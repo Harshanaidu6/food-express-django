@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded shadow">
+
+<h2 class="text-xl font-bold mb-4">Edit Address</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <textarea name="address"
+        class="w-full border p-2 rounded mb-3"
+        required>{{ address.full_address }}</textarea>
+
+    <button type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded">
+        Update Address
+    </button>
+
+</form>
+
+</div>
+
+{% endblock %}

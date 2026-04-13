@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-2xl font-bold mb-4">Search Restaurants</h1>
+
+<form method="get" action="/search/" class="mb-6">
+<input type="text" name="q"
+placeholder="Search restaurants..."
+class="border p-2 rounded w-1/2">
+
+<button class="bg-red-500 text-white px-4 py-2 rounded">
+Search
+</button>
+</form>
+
+{% if query %}
+<h2 class="text-lg mb-3">Results for "{{ query }}"</h2>
+{% endif %}
+
+<div class="grid grid-cols-3 gap-4">
+
+{% for r in restaurants %}
+
+<div class="bg-white p-4 rounded shadow">
+
+<h2 class="font-bold">{{ r.name }}</h2>
+<p>{{ r.location }}</p>
+
+<a href="/menu/{{ r.id }}/"
+class="text-red-500 font-semibold">
+View Menu
+</a>
+
+</div>
+
+{% empty %}
+
+<p>No restaurants found.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Signup</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-100 flex items-center justify-center min-h-screen ">
+
+<div class="bg-white p-8 rounded-xl shadow-lg w-96">
+
+<h2 class="text-2xl font-bold mb-6 text-center">
+Create FoodExpress Account
+</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<!-- Username -->
+<label class="block font-semibold mb-1">Username</label>
+<input type="text" name="username"
+class="w-full border p-2 rounded-xl mb-4"
+placeholder="Enter username">
+
+<p class="text-sm text-gray-500 mb-4">
+Required. 20 characters or fewer. Letters, digits and special characters only.
+</p>
+
+<!-- Password -->
+<label class="block font-semibold mb-1">Password</label>
+<input type="password" name="password1"
+class="w-full border p-2 rounded-xl mb-4"
+placeholder="Enter password">
+
+<ul class="text-sm text-gray-500 list-disc pl-5 mb-4">
+<li>Your password can’t be too similar to your personal information.</li>
+<li>Your password must contain at least 8 characters.</li>
+<li>Your password can’t be a commonly used password.</li>
+<li>Your password can’t be entirely numeric.</li>
+</ul>
+
+<!-- Confirm password -->
+<label class="block font-semibold mb-1">Confirm Password</label>
+<input type="password" name="password2"
+class="w-full border p-2 rounded-xl mb-6"
+placeholder="Confirm password">
+  
+
+<button
+class="bg-red-500 text-white px-4 py-2 rounded w-full hover:bg-red-600">
+Signup
+</button>
+
+</form>
+
+<p class="text-center mt-4">
+Already have an account?
+<a href="/accounts/login/" class="text-red-500 font-bold">
+Login
+</a>
+</p>
+
+</div>
+
+</body>
+</html>

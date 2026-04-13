@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center py-20 bg-cover bg-center text-white 
+" style="background-image: url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9');">
+    <h1 class="text-4xl font-bold">
+        FoodExpress 🍔
+    </h1>
+
+    <p class="text-white-bold-600 mt-3">
+        Order food from your favorite restaurants
+    </p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6  mt-8">
+
+{% for r in restaurants %}
+
+<div class="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition">
+
+    <!-- OPTIONAL IMAGE -->
+    {% if r.image %}
+    <img src="{{ r.image.url }}" class="w-full h-40 object-cover">
+    {% endif %}
+
+    <div class="p-4">
+
+        <h2 class="text-lg font-bold">{{ r.name }}</h2>
+        <p class="text-gray-500">{{ r.location }}</p>
+
+        <a href="/menu/{{ r.id }}/"
+        class="bg-red-500 text-white px-4 py-2 rounded mt-3 inline-block">
+            View Menu
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

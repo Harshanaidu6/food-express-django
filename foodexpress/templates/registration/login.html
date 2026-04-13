@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-100 flex items-center justify-center h-screen">
+    
+
+<div class="bg-white p-8 rounded-xl shadow-lg w-96">
+
+<h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<label class="block mb-2 font-semibold">Username</label>
+<input type="text" name="username"
+class="w-full border p-2 rounded-xl mb-4">
+
+<label class="block mb-2 font-semibold">Password</label>
+<input type="password" name="password"
+class="w-full border p-2 rounded-xl mb-4">
+<p class="text-right mb-3">
+<a href="/accounts/password_reset/" class="text-red-500 text-sm">
+Forgot Password?
+</a>
+</p>
+
+<label class="flex items-center mb-4">
+<input type="checkbox" name="remember_me" class="mr-2">
+Remember me
+</label>
+
+<button class="bg-red-500 text-white px-4 py-2 rounded w-full">
+Login
+</button>
+
+</form>
+
+<p class="text-center mt-4">
+Don't have an account?
+<a href="/signup/" class="text-red-500">Signup</a>
+</p>
+
+</div>
+
+</body>
+</html>

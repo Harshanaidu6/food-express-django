@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="grid grid-cols-4 gap-6">
+
+<!-- Sidebar -->
+<div class="bg-white p-4 rounded shadow">
+
+<h2 class="font-bold text-lg mb-4">My Account</h2>
+
+<ul class="space-y-3">
+
+<li><a href="#profile" class="text-red-500">Profile</a></li>
+
+<li><a href="#orders">Order History</a></li>
+
+<li><a href="#payments">Payment History</a></li>
+
+<li><a href="#restaurants">Previous Restaurants</a></li>
+
+<li><a href="#address">Saved Address</a></li>
+
+<li>
+<a href="/logout/" class="text-red-500 font-semibold">
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- Main Content -->
+<div class="col-span-3 space-y-6">
+
+<!-- Profile -->
+<div id="profile" class="bg-white p-4 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">Profile</h2>
+
+<p><b>Username:</b> {{ user.username }}</p>
+
+<p><b>Email:</b> {{ user.email }}</p>
+
+</div>
+
+
+<!-- Order History -->
+<div id="orders" class="bg-white p-4 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">Order History</h2>
+
+{% for order in orders %}
+
+<div class="border p-3 mb-2 rounded">
+
+    <p><b>Order ID:</b> {{ order.id }}</p>
+
+    <p><b>Item:</b> 
+        {% if order.item %}
+            {{ order.item.name }}
+        {% else %}
+            Item not available
+        {% endif %}
+    </p>
+
+    <p class="text-green-600 font-semibold">
+        ₹{{ order.total_price }}
+    </p>
+
+</div>
+
+{% empty %}
+<p>No orders yet</p>
+{% endfor %}
+
+</div>
+
+
+
+<!-- Payment History -->
+<div id="payments" class="bg-white p-4 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">Payment History</h2>
+
+{% for order in orders %}
+
+<div class="border p-3 mb-2 rounded">
+
+    <p><b>Order ID:</b> {{ order.id }}</p>  <!-- ✅ FIXED -->
+
+    <p><b>Item:</b> 
+        {% if order.item %}
+            {{ order.item.name }}
+        {% else %}
+            Item not available
+        {% endif %}
+    </p>
+
+    <p class="text-green-600 font-semibold">
+        ₹{{ order.total_price }}
+    </p>
+
+</div>
+
+{% empty %}
+<p>No payment history</p>
+{% endfor %}
+
+</div>
+
+<!-- Previous Restaurants -->
+<div id="restaurants" class="bg-white p-4 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">Previous Restaurants</h2>
+
+{% for r in restaurants %}
+
+<div class="border p-3 mb-2 rounded">
+    <p class="font-semibold">{{ r.name }}</p>
+    <p class="text-sm text-gray-500">{{ r.address }}</p>
+</div>
+
+{% empty %}
+
+<p>No restaurant orders yet</p>
+
+{% endfor %}
+
+</div>
+
+
+<!-- Saved Address -->
+<div id="address" class="bg-white p-4 rounded shadow">
+
+<h2 class="text-xl font-bold mb-3">Saved Address</h2>
+
+{% if addresses %}
+
+    {% for a in addresses %}
+        <div class="border p-3 mb-2 rounded flex justify-between items-center">
+
+            <span>{{ a.full_address }}</span>
+
+            <div class="space-x-2">
+                <!-- ✏️ Edit -->
+                <a href="{% url 'edit_address' a.id %}"
+                   class="text-blue-500 font-semibold">Edit</a>
+
+                <!-- ❌ Delete -->
+                <a href="{% url 'delete_address' a.id %}"
+                   onclick="return confirm('Delete this address?')"
+                   class="text-red-500 font-semibold">Delete</a>
+            </div>
+
+        </div>
+    {% endfor %}
+
+{% else %}
+
+    <p class="text-gray-500">No address saved yet</p>
+
+{% endif %}
+
+<!-- Add Address Form -->
+<form method="POST" action="{% url 'add_address' %}" class="mt-4">
+    {% csrf_token %}
+
+    <textarea name="address" placeholder="Enter your address"
+        class="w-full border p-2 rounded mb-2" required></textarea>
+
+    <button type="submit"
+        class="bg-red-500 text-white px-4 py-2 rounded">
+        Add Address
+    </button>
+</form>
+
+</div>
+{% endblock %}

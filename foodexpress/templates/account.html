@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FoodExpress Account</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-8 rounded shadow-md w-[700px] grid grid-cols-2 gap-6">
+
+<!-- LOGIN -->
+<div>
+<h2 class="text-xl font-bold mb-4">Login</h2>
+
+<form method="post">
+{% csrf_token %}
+
+<input type="text" name="username"
+placeholder="Username"
+class="w-full border p-2 mb-3 rounded">
+
+<input type="password" name="password"
+placeholder="Password"
+class="w-full border p-2 mb-3 rounded">
+
+<button type="submit" name="login_btn"
+class="bg-red-500 text-white px-4 py-2 rounded w-full">
+Login
+</button>
+
+</form>
+
+</div>
+
+<!-- SIGNUP -->
+<div>
+<h2 class="text-xl font-bold mb-4">Signup</h2>
+
+<form method="post">
+{% csrf_token %}
+
+{{ signup_form.as_p }}
+
+<button type="submit" name="signup_btn"
+class="bg-red-500 text-white px-4 py-2 rounded w-full">
+Signup
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
