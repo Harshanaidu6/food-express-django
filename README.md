@@ -63,14 +63,6 @@ http://127.0.0.1:8000/
 💳 Payment Integration
 Integrated with Razorpay
 
-👨‍💻 Author
-
-Harsha V
-
-📧 Email: harshavnaidu7@gmail.com
-🔗 LinkedIn: https://linkedin.com/in/harsha-v-naidu/
-💻 GitHub: https://github.com/harshanaidu6
-
 food-express-django/
 │
 ├── screenshots/
@@ -102,4 +94,16 @@ Paste this inside your README 👇
 
 ### 👤 User Profile & Orders
 ![Profile](screenshots/profile.png)
+
+
+👨‍💻 Author
+
+Harsha V
+
+📧 Email: harshavnaidu7@gmail.com
+🔗 LinkedIn: https://linkedin.com/in/harsha-v-naidu/
+💻 GitHub: https://github.com/harshanaidu6
+
+
+
 
